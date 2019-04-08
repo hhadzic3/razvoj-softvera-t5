@@ -1,4 +1,4 @@
-package sample;
+package ba.unsa.etf.rs.tut5;
 
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 public class KorisniciModel {
     private ObservableList<Korisnik> korisnik = FXCollections.observableArrayList();
-    private SimpleObjectProperty trenutniKorisnik = new SimpleObjectProperty();
+    private SimpleObjectProperty<Korisnik> trenutniKorisnik = new SimpleObjectProperty<Korisnik>();
 
     public ObservableList<Korisnik> getKorisnik() {
         return korisnik;
@@ -18,7 +18,7 @@ public class KorisniciModel {
         this.korisnik = korisnik;
     }
 
-    public Object getTrenutniKorisnik() {
+    public Korisnik getTrenutniKorisnik() {
         return trenutniKorisnik.get();
     }
 
@@ -26,9 +26,10 @@ public class KorisniciModel {
         return trenutniKorisnik;
     }
 
-    public void setTrenutniKorisnik(Object trenutniKorisnik) {
-        this.trenutniKorisnik.set(trenutniKorisnik);
+    public void setTrenutniKorisnik(Korisnik trenutniKorisnik) {
+        this.trenutniKorisnik.set((Korisnik) trenutniKorisnik);
     }
+
 
     void napuni (){
         korisnik.add(new Korisnik( "Vedran" , "Ljubovic" , " vljubovic1@etf.unsa.ba" , "vljubovic1", "password"));

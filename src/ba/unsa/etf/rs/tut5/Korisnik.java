@@ -1,21 +1,38 @@
-package sample;
+package ba.unsa.etf.rs.tut5;
 
 import javafx.beans.property.SimpleStringProperty;
 
 public class Korisnik {
 
-    private SimpleStringProperty ime;
-    private SimpleStringProperty prezime;
-    private SimpleStringProperty mail;
-    private SimpleStringProperty korisnickoIme;
-    private SimpleStringProperty lozinka;
+    private SimpleStringProperty ime = new SimpleStringProperty("");
+    private SimpleStringProperty prezime= new SimpleStringProperty("");
+    private SimpleStringProperty mail= new SimpleStringProperty("");
+    private SimpleStringProperty korisnickoIme= new SimpleStringProperty("");
+    private SimpleStringProperty lozinka= new SimpleStringProperty("");
 
-    public String getIme() {
-        return ime.get();
-    }
 
     public SimpleStringProperty imeProperty() {
         return ime;
+    }
+
+    public SimpleStringProperty prezimeProperty() {
+        return prezime;
+    }
+
+    public SimpleStringProperty mailProperty() {
+        return mail;
+    }
+
+    public SimpleStringProperty korisnickoImeProperty() {
+        return korisnickoIme;
+    }
+
+    public SimpleStringProperty lozinkaProperty() {
+        return lozinka;
+    }
+
+    public String getIme() {
+        return ime.get();
     }
 
     public void setIme(String ime) {
@@ -26,9 +43,7 @@ public class Korisnik {
         return prezime.get();
     }
 
-    public SimpleStringProperty prezimeProperty() {
-        return prezime;
-    }
+
 
     public void setPrezime(String prezime) {
         this.prezime.set(prezime);
@@ -38,9 +53,7 @@ public class Korisnik {
         return mail.get();
     }
 
-    public SimpleStringProperty mailProperty() {
-        return mail;
-    }
+
 
     public void setMail(String mail) {
         this.mail.set(mail);
@@ -50,9 +63,6 @@ public class Korisnik {
         return korisnickoIme.get();
     }
 
-    public SimpleStringProperty korisnickoImeProperty() {
-        return korisnickoIme;
-    }
 
     public void setKorisnickoIme(String korisnickoIme) {
         this.korisnickoIme.set(korisnickoIme);
@@ -62,13 +72,11 @@ public class Korisnik {
         return lozinka.get();
     }
 
-    public SimpleStringProperty lozinkaProperty() {
-        return lozinka;
-    }
-
     public void setLozinka(String lozinka) {
         this.lozinka.set(lozinka);
     }
+
+
 
     public Korisnik(){};
 
