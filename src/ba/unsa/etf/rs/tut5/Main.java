@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    /*@Override
+    @Override
     public void start(Stage primaryStage) throws Exception{
         KorisniciModel model = new KorisniciModel();
         model.napuni();
@@ -20,13 +20,15 @@ public class Main extends Application {
         primaryStage.setTitle("Korisnici");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }*/
-@Override    public void start(Stage primaryStage) throws Exception{
+    }
+
+    /*@Override
+    public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Korisnici");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
+    }*/
 
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package ba.unsa.etf.rs.tut5;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,8 +19,9 @@ public class KorisnikController {
     public TextField labelaMail;
     public TextField labelaNik;
     public PasswordField labelaLozinka;
-    public ListView<Korisnik> lista;
+    public ListView lista;
     private KorisniciModel model;
+
 
 
     public void endProgram(ActionEvent actionEvent) {
@@ -27,13 +30,15 @@ public class KorisnikController {
         stage.close();
     }
 
-    /*public void add(ActionEvent actionEvent) {
-        ObservableList ime = new FXCollections.observableArrayList(labelaIme.getText());
-        ObservableList prezime = new FXCollections(ObservableList(labelaPrezime.getText()));
-        lista.setItems(ime + " " + prezime);
-    }*/
+    public void add(ActionEvent actionEvent) {
+        ObservableList<String> ime =  FXCollections.observableArrayList(labelaIme.getText());
+        ObservableList prezime =  FXCollections.observableArrayList(labelaPrezime.getText());
+        lista.setItems(prezime);
 
-    /*public KorisnikController(KorisniciModel m) {
+        //lista.setItems(ime);
+    }
+
+    public KorisnikController(KorisniciModel m) {
         model = m;
     }
 
@@ -48,7 +53,15 @@ public class KorisnikController {
 
         lista.setItems(model.getKorisnik());
 
-    }*/
+
+        lista.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Korisnik>() {
+            @Override
+            public void changed(ObservableValue<? extends Korisnik> observableValue, Korisnik korisnik, Korisnik t1) {
+                model.setTrenutniKorisnik(t1);
+            }
+        });
+
+    }
 
 
 
