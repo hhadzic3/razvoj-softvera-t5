@@ -23,7 +23,6 @@ public class KorisnikController {
     private KorisniciModel model;
 
 
-
     public void endProgram(ActionEvent actionEvent) {
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
@@ -35,7 +34,6 @@ public class KorisnikController {
         ObservableList prezime =  FXCollections.observableArrayList(labelaPrezime.getText());
         lista.setItems(prezime);
 
-        //lista.setItems(ime);
     }
 
     public KorisnikController(KorisniciModel m) {
@@ -44,6 +42,8 @@ public class KorisnikController {
 
     @FXML
     public void initialize(){
+
+        model.setTrenutniKorisnik(model.getKorisnik().get(0));
 
         labelaIme.textProperty().bindBidirectional(model.getTrenutniKorisnik().imeProperty());
         labelaPrezime.textProperty().bindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
@@ -56,14 +56,47 @@ public class KorisnikController {
 
         lista.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Korisnik>() {
             @Override
-            public void changed(ObservableValue<? extends Korisnik> observableValue, Korisnik korisnik, Korisnik t1) {
-                model.setTrenutniKorisnik(t1);
+            public void changed(ObservableValue<? extends Korisnik> observableValue, Korisnik korisnikOld, Korisnik korisnikNew) {
+                if (korisnikOld != null) {
+                    setTextPropetryUnBind();
+                }
+                if (korisnikNew == null) {
+                    labelaIme.setText("");
+                    labelaPrezime.setText("");
+                    labelaMail.setText("");
+                    labelaNik.setText("");
+                    labelaLozinka.setText("");
+                }
+                else {
+                    Korisnik korisnik = (Korisnik) lista.getSelectionModel().getSelectedItem();
+                    setTextPropetryUnBind();
+                    model.setTrenutniKorisnik(korisnik);
+                    setTextPropetryBind();
+                    lista.refresh();
+                }
+                lista.refresh();
             }
+
+            public void setTextPropetryBind() {
+                labelaIme.textProperty().bindBidirectional(model.getTrenutniKorisnik().imeProperty());
+                labelaPrezime.textProperty().bindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
+                labelaMail.textProperty().bindBidirectional(model.getTrenutniKorisnik().mailProperty());
+                labelaNik.textProperty().bindBidirectional(model.getTrenutniKorisnik().korisnickoImeProperty());
+                labelaLozinka.textProperty().bindBidirectional(model.getTrenutniKorisnik().lozinkaProperty());
+            }
+
+            private void setTextPropetryUnBind() {
+                labelaIme.textProperty().unbindBidirectional(model.getTrenutniKorisnik().imeProperty());
+                labelaPrezime.textProperty().unbindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
+                labelaMail.textProperty().unbindBidirectional(model.getTrenutniKorisnik().mailProperty());
+                labelaNik.textProperty().unbindBidirectional(model.getTrenutniKorisnik().korisnickoImeProperty());
+                labelaLozinka.textProperty().unbindBidirectional(model.getTrenutniKorisnik().lozinkaProperty());
+            }
+
         });
 
+
+
     }
-
-
-
 
 }

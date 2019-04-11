@@ -43,8 +43,6 @@ public class Korisnik {
         return prezime.get();
     }
 
-
-
     public void setPrezime(String prezime) {
         this.prezime.set(prezime);
     }
@@ -52,7 +50,6 @@ public class Korisnik {
     public String getMail() {
         return mail.get();
     }
-
 
 
     public void setMail(String mail) {
@@ -77,7 +74,6 @@ public class Korisnik {
     }
 
 
-
     public Korisnik(){};
 
     public Korisnik(String ime, String prezime, String mail,
@@ -91,6 +87,7 @@ public class Korisnik {
 
     @Override
     public String toString() {
-        return ime.get() + " " + prezime.get();
+        String str = ime.get() + " " + prezime.get();
+        return str;
     }
 }

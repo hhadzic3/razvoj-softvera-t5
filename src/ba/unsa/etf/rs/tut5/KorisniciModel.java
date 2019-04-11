@@ -30,6 +30,9 @@ public class KorisniciModel {
         this.trenutniKorisnik.set((Korisnik) trenutniKorisnik);
     }
 
+    public void dodajKorisnika(){
+        korisnik.add(new Korisnik());
+    }
 
     void napuni (){
         korisnik.add(new Korisnik( "Vedran" , "Ljubovic" , " vljubovic1@etf.unsa.ba" , "vljubovic1", "password"));
