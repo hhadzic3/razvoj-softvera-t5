@@ -2,8 +2,6 @@ package ba.unsa.etf.rs.tut5;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -22,17 +20,19 @@ public class KorisnikController {
     public ListView lista;
     private KorisniciModel model;
 
-
+    @FXML
     public void endProgram(ActionEvent actionEvent) {
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
-
+    @FXML
     public void add(ActionEvent actionEvent) {
-        ObservableList<String> ime =  FXCollections.observableArrayList(labelaIme.getText());
-        ObservableList prezime =  FXCollections.observableArrayList(labelaPrezime.getText());
-        lista.setItems(prezime);
+        model.dodajKorisnika();
+        setTextPropetryUnBind();
+        model.setTrenutniKorisnik(model.getKorisnik().get(model.getKorisnik().size() - 1));
+        setTextPropetryBind();
+        lista.refresh();
 
     }
 
@@ -45,11 +45,7 @@ public class KorisnikController {
 
         model.setTrenutniKorisnik(model.getKorisnik().get(0));
 
-        labelaIme.textProperty().bindBidirectional(model.getTrenutniKorisnik().imeProperty());
-        labelaPrezime.textProperty().bindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
-        labelaMail.textProperty().bindBidirectional(model.getTrenutniKorisnik().mailProperty());
-        labelaNik.textProperty().bindBidirectional(model.getTrenutniKorisnik().korisnickoImeProperty());
-        labelaLozinka.textProperty().bindBidirectional(model.getTrenutniKorisnik().lozinkaProperty());
+        setTextPropetryBind();
 
         lista.setItems(model.getKorisnik());
 
@@ -77,26 +73,23 @@ public class KorisnikController {
                 lista.refresh();
             }
 
-            public void setTextPropetryBind() {
-                labelaIme.textProperty().bindBidirectional(model.getTrenutniKorisnik().imeProperty());
-                labelaPrezime.textProperty().bindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
-                labelaMail.textProperty().bindBidirectional(model.getTrenutniKorisnik().mailProperty());
-                labelaNik.textProperty().bindBidirectional(model.getTrenutniKorisnik().korisnickoImeProperty());
-                labelaLozinka.textProperty().bindBidirectional(model.getTrenutniKorisnik().lozinkaProperty());
-            }
-
-            private void setTextPropetryUnBind() {
-                labelaIme.textProperty().unbindBidirectional(model.getTrenutniKorisnik().imeProperty());
-                labelaPrezime.textProperty().unbindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
-                labelaMail.textProperty().unbindBidirectional(model.getTrenutniKorisnik().mailProperty());
-                labelaNik.textProperty().unbindBidirectional(model.getTrenutniKorisnik().korisnickoImeProperty());
-                labelaLozinka.textProperty().unbindBidirectional(model.getTrenutniKorisnik().lozinkaProperty());
-            }
-
         });
+    }
 
+    private void setTextPropetryBind() {
+        labelaIme.textProperty().bindBidirectional(model.getTrenutniKorisnik().imeProperty());
+        labelaPrezime.textProperty().bindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
+        labelaMail.textProperty().bindBidirectional(model.getTrenutniKorisnik().mailProperty());
+        labelaNik.textProperty().bindBidirectional(model.getTrenutniKorisnik().korisnickoImeProperty());
+        labelaLozinka.textProperty().bindBidirectional(model.getTrenutniKorisnik().lozinkaProperty());
+    }
 
-
+    private void setTextPropetryUnBind() {
+        labelaIme.textProperty().unbindBidirectional(model.getTrenutniKorisnik().imeProperty());
+        labelaPrezime.textProperty().unbindBidirectional(model.getTrenutniKorisnik().prezimeProperty());
+        labelaMail.textProperty().unbindBidirectional(model.getTrenutniKorisnik().mailProperty());
+        labelaNik.textProperty().unbindBidirectional(model.getTrenutniKorisnik().korisnickoImeProperty());
+        labelaLozinka.textProperty().unbindBidirectional(model.getTrenutniKorisnik().lozinkaProperty());
     }
 
 }
