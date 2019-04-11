@@ -26,6 +26,7 @@ public class KorisnikController {
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     public void add(ActionEvent actionEvent) {
         model.dodajKorisnika();
@@ -33,7 +34,6 @@ public class KorisnikController {
         model.setTrenutniKorisnik(model.getKorisnik().get(model.getKorisnik().size() - 1));
         setTextPropetryBind();
         lista.refresh();
-
     }
 
     public KorisnikController(KorisniciModel m) {
@@ -42,13 +42,11 @@ public class KorisnikController {
 
     @FXML
     public void initialize(){
-
         model.setTrenutniKorisnik(model.getKorisnik().get(0));
 
         setTextPropetryBind();
 
         lista.setItems(model.getKorisnik());
-
 
         lista.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Korisnik>() {
             @Override
