@@ -51,7 +51,6 @@ public class Korisnik {
         return mail.get();
     }
 
-
     public void setMail(String mail) {
         this.mail.set(mail);
     }
@@ -59,7 +58,6 @@ public class Korisnik {
     public String getKorisnickoIme() {
         return korisnickoIme.get();
     }
-
 
     public void setKorisnickoIme(String korisnickoIme) {
         this.korisnickoIme.set(korisnickoIme);
@@ -72,7 +70,6 @@ public class Korisnik {
     public void setLozinka(String lozinka) {
         this.lozinka.set(lozinka);
     }
-
 
     public Korisnik(){};
 

@@ -17,7 +17,7 @@ public class KorisnikController {
     public TextField labelaMail;
     public TextField labelaNik;
     public PasswordField labelaLozinka;
-    public ListView lista;
+    public ListView<Korisnik> lista;
     private KorisniciModel model;
 
     @FXML
@@ -34,6 +34,8 @@ public class KorisnikController {
         model.setTrenutniKorisnik(model.getKorisnik().get(model.getKorisnik().size() - 1));
         setTextPropetryBind();
         lista.refresh();
+        lista.requestFocus();
+        lista.getSelectionModel().selectLast();
     }
 
     public KorisnikController(KorisniciModel m) {
@@ -42,11 +44,12 @@ public class KorisnikController {
 
     @FXML
     public void initialize(){
+        lista.requestFocus();
         model.setTrenutniKorisnik(model.getKorisnik().get(0));
-
         setTextPropetryBind();
-
         lista.setItems(model.getKorisnik());
+        lista.getFocusModel().focus(0);
+        setTextPropetryUnBind();
 
         lista.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Korisnik>() {
             @Override
@@ -62,16 +65,20 @@ public class KorisnikController {
                     labelaLozinka.setText("");
                 }
                 else {
-                    Korisnik korisnik = (Korisnik) lista.getSelectionModel().getSelectedItem();
-                    setTextPropetryUnBind();
-                    model.setTrenutniKorisnik(korisnik);
-                    setTextPropetryBind();
-                    lista.refresh();
+                    updateKorisnika();
                 }
                 lista.refresh();
             }
 
         });
+    }
+
+    private void updateKorisnika() {
+        Korisnik korisnik = (Korisnik) lista.getSelectionModel().getSelectedItem();
+        setTextPropetryUnBind();
+        model.setTrenutniKorisnik(korisnik);
+        setTextPropetryBind();
+        lista.refresh();
     }
 
     private void setTextPropetryBind() {

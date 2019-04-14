@@ -10,7 +10,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         KorisniciModel model = new KorisniciModel();
         model.napuni();
 
@@ -31,8 +30,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }*/
-
-
 
     public static void main(String[] args) {
         launch(args);
